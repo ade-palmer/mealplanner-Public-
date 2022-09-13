@@ -1,1 +1,1 @@
-# mealplanner-Public-
+# Meal Planner (Public)
