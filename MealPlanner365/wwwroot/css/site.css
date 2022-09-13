@@ -1,0 +1,174 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+body {
+    background: #fff;
+    color: #333;
+    margin-bottom: 60px;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+
+/*--- Title Section ---*/
+.title-container {
+    background: #7acbe6;
+}
+
+#title .btn {
+    border-width: medium;
+    border-radius: 0;
+    padding: .3rem 1.3rem;
+    font-size: 1.1rem;
+}
+
+
+/*--- Features Section ---*/
+.features {
+    padding: 1.2rem;
+}
+
+.heading-underline {
+    width: 6rem;
+    height: .2rem;
+    background-color: #7acbe6;
+    margin: 0 auto 2rem;
+}
+
+
+/*--- Security Section ---*/
+.security-container {
+    background: #e7e9ea;
+}
+
+
+/*--- Demo Section ---*/
+#demo .btn-secondary {
+    border-width: medium;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    padding: .3rem 1.3rem;
+    margin: 1rem;
+    background-color: #7acbe6;
+    border-color: #7acbe6;
+}
+
+#demo .btn-secondary:hover {
+    background-color: #57acc8;
+    border-color: #57acc8;
+}
+
+
+/*--- MealPlan Save Bar ---*/
+.saveBar {
+    background: rgba(255, 0, 0, 0.6)
+}
+
+
+/*--- Food Item Accordian ---*/
+.admin-accordion .card {
+    border-radius: 0;
+}
+
+.admin-accordion .card:not(:last-child) {
+    border-bottom: none;
+}
+
+.admin-accordion .card-header {
+    padding: 10px 20px 0 20px;
+    background: transparent;
+}
+
+.admin-accordion .btn {
+    width: 100%;
+    color: #212529;
+    padding: 0;
+}
+
+.admin-accordion .btn-link:hover,
+.admin-accordion .btn-link:focus {
+    text-decoration: none;
+}
+
+
+/*--- Login Horizontal Rule customisation ---*/
+.hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 1.5rem;
+}
+
+.hr-text:before {
+    content: '';
+    background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+}
+
+.hr-text:after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    font-size: .8rem;
+    padding: 0 .5em;
+    line-height: 1.5rem;
+    color: #adb5bd;
+    background-color: #fff;
+}
+
+
+/*--- Customise Error/warning popup ---*/
+.field-validation-error, .validation-summary-errors {
+    margin-top: .75rem;
+    color: #721c24 !important;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: .75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.validation-summary-errors ul {
+    list-style-type: none;
+    margin-bottom: 0;
+}
+
+/*.custom-checkbox .custom-control-input.my-error ~ .custom-control-label::before {
+    background-color: red !important;
+}*/
+
+
+/*--- Footer ---*/
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+
+/*--- Media Queries ---*/
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 960px;
+    }
+}

@@ -1,0 +1,45 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+    <form method="post">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <h3>@ViewData["Title"]</h3>
+
+                <div asp-validation-summary="All" class="text-danger text-center"></div>
+
+                <div class="form-group text-muted pt-5">
+                    <small>
+                        <label asp-for="Email"></label>
+                    </small>
+                    <input asp-for="Email" class="form-control" />
+                </div>
+
+                <div class="form-group text-muted">
+                            <small>
+                                <label asp-for="Password"></label>
+                            </small>
+                    <input asp-for="Password" class="form-control" />
+                </div>
+
+                <div class="form-group text-muted">
+                    <div class="custom-control custom-checkbox">
+                        <input asp-for="RememberMe" class="custom-control-input" />
+                        <label asp-for="RememberMe" class="custom-control-label">
+                            <small>@Html.DisplayNameFor(m => m.RememberMe)</small>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info btn-lg btn-block">SIGN IN</button>
+                </div>
+            </div>
+        </div>
+
+    </form>

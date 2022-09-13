@@ -1,0 +1,42 @@
+﻿@model ItemViewModel
+
+@{
+    ViewData["Title"] = "Administration";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <partial name="_AdminTabs" />
+    </div>
+
+    <div class="card-body">
+        <div class="tab-content mt-3">
+            <div class="tab-pane active" id="Item" role="tabpanel" aria-labelledby="item-tab">
+                <p class="text-center">Edit the item and associated category if required</p>
+                <form asp-action="EditItem" class="mb-2">
+                    <input type="hidden" asp-for="ItemId" />
+                    <input type="hidden" asp-for="MealPlanId" />
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-sm-5 col-7">
+                            <select asp-for="FoodTypeId" asp-items="@ViewBag.Categories" class="selectpicker" title="Choose a food category..." data-width="100%"></select>
+                        </div>
+                        <div class="col-lg-1 col-sm-2 col-2"></div>
+                    </div>
+                    <div class="row justify-content-center pt-2">
+                        <div class="col-lg-4 col-sm-5 col-7">
+                            <label asp-for="ItemName" class="sr-only"></label>
+                            <input asp-for="ItemName" class="form-control" />
+                        </div>
+                        <div class="col-lg-1 col-sm-2 col-2">
+                            <button type="submit" class="btn btn-primary mb-2">Save</button>
+                        </div>
+                    </div>
+                </form>
+                <partial name="_StatusMessage" />
+                <div asp-validation-summary="ModelOnly" class="text-danger text-center"></div>
+                <span asp-validation-for="ItemName" class="d-block text-center"></span>
+                <span asp-validation-for="FoodTypeId" class="d-block text-center"></span>
+            </div>
+        </div>
+    </div>
+</div>

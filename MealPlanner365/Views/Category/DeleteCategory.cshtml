@@ -1,0 +1,31 @@
+﻿@model CategoryViewModel
+
+@{
+    ViewData["Title"] = "Administration";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <partial name="_AdminTabs" />
+    </div>
+
+    <div class="card-body">
+        <div class="tab-content mt-3 mx-md-5">
+            <div class="tab-pane active" id="Category" role="tabpanel" aria-labelledby="category-tab">
+                <p class="text-center">Are you sure you want to delete the following category.....</p>
+                <div class="d-flex justify-content-center">
+                    <form class="form-inline" asp-action="DeleteCategory">
+                        <input type="hidden" asp-for="CategoryId" />
+                        <input type="hidden" asp-for="MealPlanId" />
+                        <div class="form-group mx-2 mb-2">
+                            <label asp-for="Name" class="sr-only"></label>
+                            <input asp-for="Name" class="form-control" readonly />
+                        </div>
+                        <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                    </form>
+                </div>
+                <partial name="_StatusMessage" />
+            </div>
+        </div>
+    </div>
+</div>

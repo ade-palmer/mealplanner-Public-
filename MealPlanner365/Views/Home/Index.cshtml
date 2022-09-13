@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_HomeLayout";
+    ViewData["Title"] = "Meal Planner";
+}
+
+<section id="title" class="title-container">
+    <div class="container py-4">
+        <div class="row">
+            <div class="text-white text-center text-md-left col-lg-5 p-5">
+                <h2>Plan and Share</h2>
+                <p class="lead">Share your weekly meal planner with friends and family</p>
+                <p class="lead">Login to view your settings</p>
+                <button class="btn btn-outline-light btn-lg">Login</button>
+            </div>
+            <div class="col-lg-7 p-3">
+                <img src="~/img/browser.png" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="features">
+    <div class="container py-4">
+        <h2 class="text-center py-4">Features</h2>
+        <div class="heading-underline"></div>
+        <div class="row text-center">
+            <div class="col-md features">
+                <i class="fas fa-shopping-basket fa-3x text-secondary mb-3"></i>
+                <h4>Shopping days</h4>
+                <p>Add shopping days which will be highlighted on the planner</p>
+            </div>
+            <div class="col-md features">
+                <i class="fas fa-utensils fa-3x text-secondary mb-3"></i>
+                <h4>Meals</h4>
+                <p>Add additional meals for different family members</p>
+            </div>
+            <div class="col-md features">
+                <i class="fas fa-hamburger fa-3x text-secondary mb-3"></i>
+                <h4>Categories</h4>
+                <p>Easily find categorised food types and items</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="security" class="security-container">
+    <div class="container py-3">
+        <h2 class="text-center py-4">Security</h2>
+        <div class="heading-underline"></div>
+        <div class="row">
+            <div class="col-md p-3 text-center">
+                <img src="~/img/secure-login.png" class="img-fluid" />
+            </div>
+            <div class="col-md">
+                <h4 class="pt-4">Secure URL</h4>
+                <p>Each Meal Planner is assigned a unique URL to ensure security and simplified access.</p>
+                <h4 class="pt-4">Login</h4>
+                <p>Secure Administrator logins can be created for each Meal Plan to allow access to management and configuration settings.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="demo">
+    <div class="container py-4">
+        <h2 class="text-center py-4">Try it out</h2>
+        <div class="heading-underline"></div>
+        <div class="text-center">
+            <p>Try the demo Meal Planner. You'll have access to all features but will not be able to save any changes.</p>
+            <a asp-controller="MealPlan" asp-action="0c1574aa-a75a-4b57-bbfa-e63cac9c4a96" class="btn btn-secondary btn-md">Demo</a>
+        </div>
+    </div>
+</section>

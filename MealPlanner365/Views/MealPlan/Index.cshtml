@@ -1,0 +1,75 @@
+﻿@model MealPlanViewModel
+
+@{
+    ViewData["Title"] = "Meal Planner";
+    ViewData["MealPlan"] = Model.MealPlanId;
+}
+
+@*TODO: Change Form ID to something more informative*@
+    <form id="mealForm" asp-action="UpdateMeals" method="POST">
+        <input asp-for="@Model.PageOffset" />
+        <input asp-for="@Model.MealPlanId" />
+        @for (int i = 0; i < Model.Meals.Count; i++)
+        {
+            if (Model.Meals[i].Date == Model.Meals[0].Date)
+            {
+                <div class="d-flex justify-content-between mb-3">
+                    <a asp-controller="MealPlan" asp-action="@Model.MealPlanId" asp-route-pageOffset="@(Model.PageOffset - 1)">
+                        <i class="fas fa-chevron-circle-left fa-2x text-secondary"></i>
+                    </a>
+                    <h1 class="display-3">@Model.Meals[i].Date.ToString("ddd d MMM yyyy")</h1>
+                    <a asp-controller="MealPlan" asp-action="@Model.MealPlanId" asp-route-pageOffset="@(Model.PageOffset + 1)">
+                        <i class="fas fa-chevron-circle-right fa-2x text-secondary"></i>
+                    </a>
+                </div>
+            }
+            if (Model.Meals[i].Date == Model.Meals[0].Date.AddDays(7) && Model.Meals[i].Date != Model.Meals[i-1].Date)
+            {
+                <div class="text-center">
+                    <h1 class="display-3">@Model.Meals[i].Date.ToString("ddd d MMM yyyy")</h1>
+                </div>
+            }
+            <input type="hidden" asp-for="@Model.Meals[i].MealId" />
+            <input type="hidden" asp-for="@Model.Meals[i].Date" />
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group row align-items-center">
+                        <div class="col-md-1 py-2 bg">
+                            <date-display show="@Model.Meals[i].DisplayDate" 
+                                          is-shopping-day="@Model.Meals[i].ShoppingDay" 
+                                          date="@Model.Meals[i].Date">
+                            </date-display>
+                        </div>
+                        <div class="col-md-11">
+                            <select asp-for=" @Model.Meals[i].SelectedItems" asp-items="ViewBag.AllSelectListItems" class="selectpicker" multiple title="Choose meal items..." data-width="100%"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select asp-for=" @Model.Meals[i].Diners" asp-items="ViewBag.mealPlanDiners" class="selectpicker" multiple title="Choose diners..." data-width="100%"></select>
+                </div>
+            </div>
+        }
+        <div id="saveDiv" class="saveBar fixed-bottom text-center d-none py-3">
+            <button id="save" type="submit" class="btn btn-danger">Save Changes</button>
+        </div>
+    </form>
+
+@section Scripts {
+    <script>
+        var $inputs = $('#mealForm :input');
+        $inputs.on('keyup change', function () {
+            var dataChanged = $inputs.filter(function () {
+                var $this = $(this);
+                var currentValue = this.value;
+                return $this.data('value') != currentValue;
+            }).length;
+
+            dataChanged == 0 ? $('#saveDiv').addClass('d-none') : $('#saveDiv').removeClass('d-none');
+        });
+
+        $('#save').click(function () {
+            $('#save').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving...').addClass('disabled');
+        });
+    </script>
+}

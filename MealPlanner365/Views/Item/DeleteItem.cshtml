@@ -1,0 +1,40 @@
+﻿@model ItemViewModel
+
+@{
+    ViewData["Title"] = "Administration";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <partial name="_AdminTabs" />
+    </div>
+
+    <div class="card-body">
+        <div class="tab-content mt-3">
+            <div class="tab-pane active" id="Item" role="tabpanel" aria-labelledby="item-tab">
+                <p class="text-center">Are you sure you want to delete the following Item</p>
+                <form asp-action="DeleteItem" class="mb-2">
+                    <input type="hidden" asp-for="ItemId" />
+                    <input type="hidden" asp-for="MealPlanId" />
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-sm-5 col-7">
+                            <label asp-for="FoodTypeName" class="sr-only"></label>
+                            <input asp-for="FoodTypeName" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-1 col-sm-2 col-2"></div>
+                    </div>
+                    <div class="row justify-content-center pt-2">
+                        <div class="col-lg-4 col-sm-5 col-7">
+                            <label asp-for="ItemName" class="sr-only"></label>
+                            <input asp-for="ItemName" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-1 col-sm-2 col-2">
+                            <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                        </div>
+                    </div>
+                </form>
+                <partial name="_StatusMessage" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Edit Diner";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <h3>@ViewData["Title"]</h3>
+
+        <form asp-controller="Account" asp-action="EditDiner" method="post">
+
+            <div asp-validation-summary="All" class="text-danger text-center"></div>
+
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="MealPlanId" />
+
+            <div class="form-group text-muted">
+                <small>
+                    <label asp-for="Name"></label>
+                </small>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group text-muted">
+                <small>
+                    <label asp-for="Email"></label>
+                </small>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group text-muted">
+                <div class="custom-control custom-checkbox">
+                    <input asp-for="Administrator" class="custom-control-input" />
+                    <label asp-for="Administrator" class="custom-control-label">
+                        <small>@Html.DisplayNameFor(m => m.Administrator)</small>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group text-muted pt-3">
+                <button type="submit" class="btn btn-info btn-lg btn-block">SAVE</button>
+            </div>
+        </form>
+    </div>
+</div>

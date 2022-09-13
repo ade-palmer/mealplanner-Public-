@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Meal Planner 365</title>
+    <link rel="stylesheet" href="~/css/custom-bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand display-4" asp-controller="Home" asp-action="Index">Meal Planner</a>
+                <div class="navbar-collapse collapse">
+                    <partial name="_NavbarOptions" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer small bg-dark text-light">
+        <div class="container d-flex">
+            <div>&copy; @DateTime.Now.Year | Meal Planner 365 | <a class="text-light" asp-controller="Shared" asp-action="Privacy">Privacy</a> | <a class="text-light" asp-controller="Shared" asp-action="TermsAndConditions">Terms of Use</a></div>
+            <a class="ml-auto text-light" href="https://github.com/ade-palmer/mealplanner.core" rel="noopener noreferrer" target="_blank">Github<i class="fab fa-github pl-2"></i></a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+    @*FontAwesome CSS - loading last, so it doesn't block rendering*@
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</body>
+</html>

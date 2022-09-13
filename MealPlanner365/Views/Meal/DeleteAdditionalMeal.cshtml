@@ -1,0 +1,30 @@
+﻿@model AdditionalMealViewModel
+
+@{
+    ViewData["Title"] = "Delete Meal";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <partial name="_AdminTabs" />
+    </div>
+
+    <div class="card-body">
+        <div class="tab-content mt-3 mx-md-5">
+            <div class="tab-pane active" id="Meal" role="tabpanel" aria-labelledby="meal-tab">
+                <p class="text-center">Are you sure you want to delete the following additional meal?</p>
+                <div class="d-flex justify-content-center">
+                    <form class="form-inline" asp-action="DeleteAdditionalMeal">
+                        <input type="hidden" asp-for="MealId" />
+                        <input type="hidden" asp-for="MealPlanId" />
+                        <div class="form-group mx-2 mb-2">
+                            <label asp-for="Date" class="sr-only"></label>
+                            <input asp-for="Date" class="form-control" readonly />
+                        </div>
+                        <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

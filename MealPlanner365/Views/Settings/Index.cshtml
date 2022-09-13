@@ -1,0 +1,93 @@
+﻿@model SettingsViewModel
+
+@{
+    ViewData["Title"] = "Settings";
+}
+<div class="card m-4">
+    <h5 class="card-header">General Setting</h5>
+    <div class="card-body mx-md-5">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <tbody>
+                    <tr>
+                        <td><label asp-for="@Model.Url"></label></td>
+                        <td><span id="copyUrl">@Model.Url@ViewData["MealPlan"]</span></td>
+                        <td align="right" nowrap>
+                                <i class="fas fa-clipboard fa-lg text-info btn" onclick="copyToClipboard('#copyUrl')"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="@Model.DisplayDays"></label></td>
+                        <td>@Model.DisplayDays</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="@Model.PageIncrements"></label></td>
+                        <td>@Model.PageIncrements</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card m-4">
+    <h5 class="card-header">Diners</h5>
+    <div class="card-body mx-md-5">
+        <a class="float-right pb-1 pr-1" asp-controller="Account" asp-action="CreateDiner" asp-route-mealPlanId="@ViewData["MealPlan"]">
+            <i class="fas fa-plus-square fa-2x text-success"></i>
+        </a>
+        @if (!Model.Diners.Any())
+        {
+            <h5>No Diner assigned</h5>
+            <p>Add diners here and they will be available in the Meal Planner</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-sm table-striped">
+                    <tbody>
+                        @foreach (var diner in Model.Diners)
+                        {
+                        <tr>
+                            <td>
+                                <h5>@diner.Name
+                                    <small>
+                                        <i condition="diner.Administrator" class="fas fa-users-cog text-info ml-2"></i>
+                                        <i condition="diner.LockedOut" class="fas fa-user-lock text-danger ml-2"></i>
+                                        <i condition="!diner.EmailConfirmed" class="fas fa-envelope text-warning ml-2"></i>
+                                    </small>
+                                </h5>
+                            </td>
+                            <td align="right" nowrap>
+                                <a asp-controller="Account" asp-action="DeleteDiner" asp-route-id="@diner.UserId">
+                                    <i class="fas fa-minus-square fa-2x text-danger mr-2"></i>
+                                </a>
+                                <a asp-controller="Account" asp-action="EditDiner" asp-route-id="@diner.UserId">
+                                    <i class="fas fa-pen-square fa-2x text-info"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        function copyToClipboard(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).html()).select();
+            document.execCommand("copy");
+            $temp.remove();
+
+            alert("Link copied to clipboard");
+        }   
+    </script>
+}

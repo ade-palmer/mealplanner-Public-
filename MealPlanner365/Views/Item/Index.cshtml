@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ItemViewModel>
+
+@{
+    ViewData["Title"] = "Administration";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <partial name="_AdminTabs" />
+    </div>
+
+    <div class="card-body">
+        <div class="tab-content mt-3 mx-md-5">
+            <div class="tab-pane active" id="Item" role="tabpanel" aria-labelledby="item-tab">
+                @if (!Model.Any())
+                {
+                    <a class="float-right " asp-controller="Item" asp-action="CreateItem" asp-route-mealPlanId="@ViewData["MealPlan"]">
+                        <i class="fas fa-plus-square fa-2x text-success"></i>
+                    </a>
+                    <h5>No items to display</h5>
+                    <p>Before adding Items, please ensure you have configured some food <a asp-controller="Category" asp-action="@ViewData["MealPlan"]">categories</a> (e.g. Meat, Fish, Salad etc.)</p>
+
+                }
+                else
+                {
+                    <a class="d-block text-right pb-1 pr-3" asp-controller="Item" asp-action="CreateItem" asp-route-mealPlanId="@ViewData["MealPlan"]">
+                        <i class="fas fa-plus-square fa-2x text-success"></i>
+                    </a>
+                    <div id="accordion" class="admin-accordion">
+                        @foreach (var foodType in Model.GroupBy(t => t.FoodTypeName))
+                        {
+                            <div class="card">
+                                <div class="card-header" id="@foodType.Key">
+                                    <h2 class="mb-0">
+                                        <button class="d-flex align-items-center btn btn-link collapsed" data-toggle="collapse" data-target=@("#collapse" + foodType.Key) aria-expanded="false" aria-controls=@("collapse" + foodType.Key)>
+                                            <h5>@foodType.Key</h5><span class="badge badge-pill badge-info ml-2">@foodType.Count()</span>
+                                            <i class="fas fa-chevron-down ml-auto"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id=@("collapse" + foodType.Key) class="collapse" aria-labelledby="@foodType.Key" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-striped">
+                                                <tbody>
+                                                    @foreach (var item in foodType)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.ItemName</td>
+                                                            <td align="right" nowrap>
+                                                                <a asp-controller="Item" asp-action="DeleteItem" asp-route-ItemId="@item.ItemId">
+                                                                    <i class="fas fa-minus-square fa-2x text-danger mr-2"></i>
+                                                                </a>
+                                                                <a asp-controller="Item" asp-action="EditItem" asp-route-ItemId="@item.ItemId">
+                                                                    <i class="fas fa-pen-square fa-2x text-info"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

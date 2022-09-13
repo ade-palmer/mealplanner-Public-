@@ -1,0 +1,36 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+@{
+    bool isSignedIn = signInManager.IsSignedIn(User);
+}
+
+    <ul class="navbar-nav">
+        @if (@ViewData["MealPlan"] != null)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="MealPlan" asp-action="@ViewData["MealPlan"]"><i class="fas fa-calendar-day" style="width: 30px;"></i><span>Today</span></a>
+            </li>
+            <li class="nav-item"><hr class="border-top border-secondary"></li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="Item" asp-action="@ViewData["MealPlan"]"><i class="fas fa-hamburger" style="width: 30px;"></i><span>Items</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="Meal" asp-action="@ViewData["MealPlan"]" asp-route-tab="meals"><i class="fas fa-utensils" style="width: 30px;"></i><span>Meals</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="Settings" asp-action="@ViewData["MealPlan"]" asp-route-tab="diners"><i class="fas fa-users" style="width: 30px;"></i><span>Diners</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="Shopping" asp-action="@ViewData["MealPlan"]"><i class="fas fa-shopping-basket" style="width: 30px;"></i><span>Shopping</span></a>
+            </li>
+        }
+        <li class="nav-item"><hr class="border-top border-secondary"></li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-controller="Settings" asp-action="@ViewData["MealPlan"]"><i class="fas fa-cog" style="width: 30px;"></i><span>Settings</span></a>
+        </li>
+        <li condition="!isSignedIn" class="nav-item">
+            <a class="nav-link text-light" asp-controller="Account" asp-action="Login"><i class="fas fa-sign-in-alt" style="width: 30px;"></i><span>Login</span></a>
+        </li>
+        <li condition="isSignedIn" class="nav-item">
+            <a class="nav-link text-light" asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i><span>Logout (@User.Identity.Name)</span></a>
+        </li>
+    </ul>

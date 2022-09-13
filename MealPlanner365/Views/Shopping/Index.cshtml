@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ShoppingViewModel>
+
+@{
+    ViewData["Title"] = "Administration";
+}
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <partial name="_AdminTabs" />
+        </div>
+
+        <div class="card-body">
+            <div class="tab-content mt-3 mx-md-5">
+                <div class="tab-pane active" id="Shopping" role="tabpanel" aria-labelledby="shopping-tab">
+                    @if (!Model.Any())
+                    {
+                        <a class="float-right " asp-controller="Shopping" asp-action="CreateShopping" asp-route-mealPlanId="@ViewData["MealPlan"]">
+                            <i class="fas fa-plus-square fa-2x text-success"></i>
+                        </a>
+                        <h5>No shopping days to display</h5>
+                        <p>Add your shopping days here and they will be displayed in the Meal Planner</p>
+
+                    }
+                    else
+                    {
+                        <a class="float-right pb-1 pr-1" asp-controller="Shopping" asp-action="CreateShopping" asp-route-mealPlanId="@ViewData["MealPlan"]">
+                            <i class="fas fa-plus-square fa-2x text-success"></i>
+                        </a>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped">
+                                <tbody>
+                                    @foreach (var shoppingDay in Model)
+                                    {
+                                        <tr>
+                                            <td>@shoppingDay.Date.ToString("ddd d MMM yyyy")</td>
+                                            <td align="right" nowrap>
+                                                <a asp-controller="Shopping" asp-action="DeleteShopping" asp-route-ShoppingId="@shoppingDay.ShoppingId">
+                                                    <i class="fas fa-minus-square fa-2x text-danger mr-2"></i>
+                                                </a>
+                                                <a asp-controller="Shopping" asp-action="EditShopping" asp-route-ShoppingId="@shoppingDay.ShoppingId">
+                                                    <i class="fas fa-pen-square fa-2x text-info"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>

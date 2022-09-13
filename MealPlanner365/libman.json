@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "bootstrap-select@1.13.16",
+      "destination": "wwwroot/lib/bootstrap-select/",
+      "files": [
+        "dist/css/bootstrap-select.css",
+        "dist/css/bootstrap-select.css.map",
+        "dist/css/bootstrap-select.min.css",
+        "dist/js/bootstrap-select.js",
+        "dist/js/bootstrap-select.js.map",
+        "dist/js/bootstrap-select.min.js",
+        "dist/js/bootstrap-select.min.js.map"
+      ]
+    },
+    {
+      "library": "bootstrap@4.5.0",
+      "destination": "wwwroot/lib/bootstrap/"
+    }
+  ]
+}
