@@ -1,6 +1,6 @@
 # Meal Planner (Public)
 
-This app has been written in .Net Core 3 MVC. I managed to play with Bootstrap SCSS Compilers alongside many .Net Core features.
+This app has been written in .Net Core 3 MVC to help share your weekly meal planner with friends and family. I managed to play with Bootstrap SCSS Compilers alongside many .Net Core features.
 
 **Demo:** http://mealplanner365.com/MealPlan/0c1574aa-a75a-4b57-bbfa-e63cac9c4a96
 
